@@ -1,4 +1,4 @@
-import { StepStatus, type TaskProgressType, type Task } from "../types/types";
+import { StepStatus, TaskProgress, type Task } from "../types/types";
 
 function createTaskHandler(){
     let tasks = $state<Task[]>([]);
@@ -17,7 +17,7 @@ function createTaskHandler(){
         selectedIndex = index;
     }
 
-    function setTaskStatus(index: number, status: TaskProgressType) {
+    function setTaskStatus(index: number, status: TaskProgress) {
         tasks[index].taskProgress = status;
     }
 
@@ -25,9 +25,11 @@ function createTaskHandler(){
         get tasks() { return tasks; },
         get selectedIndex() { return selectedIndex; },
         selectStep,
-
+        setTaskStatus
     };
 }
+
+export const taskHandler = createTaskHandler();
 
 
 

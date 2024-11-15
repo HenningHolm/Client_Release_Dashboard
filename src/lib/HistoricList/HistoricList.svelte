@@ -5,6 +5,7 @@
     let loading = true;
     onMount(async () => {
         await releaseHandler.fetchReleases();
+        releaseHandler.selectRelease(releaseHandler.releases[0].containerName);
         loading = false;
     });
 </script>
@@ -19,7 +20,7 @@
             {#each releaseHandler.releases as release, i}
                 <button
                     type="button"
-                    class="list-group-item list-group-item-action {releaseHandler.selected.containerName == release.containerName ? 'active' : ''}"
+                    class="list-group-item list-group-item-action {releaseHandler.selected?.containerName == release.containerName ? 'active' : ''}"
                     on:click={() => releaseHandler.selectRelease(release.containerName)}
                 >
                     {release.containerName} {i === 0 ? ' - Gyldig' : '- Utgått'}
@@ -30,8 +31,8 @@
     <button
         type="button"
         class="btn btn-success mt-3 btn-block"
-        on:click={ }
+        on:click={()=>console.log("#") }
     >
-        Opprett ny release
+        Ny release
     </button>
 </div>
